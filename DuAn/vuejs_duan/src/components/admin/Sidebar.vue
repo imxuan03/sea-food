@@ -6,7 +6,6 @@
             <span class="image img-cover profile-image"><img src="@/assets/admin/img/unnamed.png" alt=""></span>
             <div class="name">Võ Thành Đạt</div>
             <div class="role">Quản trị viên</div>
-            <button class="btn btn-danger button-logout" @click="logout">Đăng Xuất</button>
        </div>
        <div class="aside-body">
         <ul class="uk-list uk-clearfix task-list">
@@ -20,9 +19,6 @@
                             <i class="bx bx-home"></i>
                         </span>
                         <span class="nav-label">Dashboard</span>
-                        <span class="task-icon arrow">
-                            <i class="bx bx-chevron-right"></i>
-                        </span>
                     </div>
                 </router-link>
             </li>
@@ -39,35 +35,32 @@
                     </div>
                 </router-link>
             </li>
+
+            <li>
+                <a href="">
+                    <div class="uk-flex uk-flex-middle">
+                        <span class="task-icon">
+                            <i class="bx bx-cart"></i>
+                        </span>
+                        <span class="nav-label">QL Sea Food</span>
+                        <span class="task-icon arrow">
+                            <i class="bx bx-chevron-right"></i>
+                        </span>
+                    </div>
+                </a>
+            </li>
         </ul>
        </div>
     </aside>  
 </template>
 
-<script>
-import Authorization from "@/services/admin/authorization.service.js";
-export default {
-  computed: {},
-  name: "sidebar-admin",
-  methods: {
-    async logout() {
-      // Xử lý đăng xuất ở đây
-      try {
-        const respone = await Authorization.logOut();
-        this.$router.push({ name: "login" });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
-};
-</script>
 <style scoped>
      .app-sidebar{
-        height: 100%;
+        height: 100vh;
         width: 240px;
         background: #111c43;
         color: #a3aed1;
+        position: absolute;
     }
 
     .app-sidebar .aside-head{
