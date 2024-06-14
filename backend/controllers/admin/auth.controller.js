@@ -14,22 +14,22 @@ module.exports.loginPost = async (req, res, next) => {
     const user = await Account.findOne({ email: enteredEmail });
 
     if (!user) {
-      res.status(404).json({ message: `wrong email!`})
+      res.json("wrong info")
       return;
     }
 
     if (!enteredPassword) {
-      res.status(404).json({ message: `wrong password!`})
+      res.json("wrong info")
       return;
     }
 
     if (enteredPassword != user.password ) {
-      res.status(404).json({ message: `wrong password!`})
+      res.json("wrong info")
       return;
     }
 
     res.cookie("token", user.token);
-    res.status(200).json({ message: `login account successfully!`})
+    res.json("success")
 
   } catch (error) {
     console.log('error:', error);
