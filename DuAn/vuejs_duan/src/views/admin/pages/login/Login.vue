@@ -11,10 +11,10 @@
                 </h2>
                 <div class="description">Chào mừng bạn đến với hệ thống <br> <span>VUEJS SYSTEM</span> </div>
             </div>
-            <div class="panel-body">
+            <form @submit.prevent="login" class="panel-body">
                 <div class="form-row mb-20">
                     <div class="label">Tên đăng nhập</div>
-                    <input type="text" name="email" value="" class="input-text" autocomplete="off">
+                    <input v-model="formData.email" type="text" name="email" id="email" class="input-text" autocomplete="off">
                 </div>
                 <div class="form-row mb-20">
                     <div class="label">
@@ -25,18 +25,12 @@
                             <a href="" title="" class="forgot">Quên mật khẩu ?</a>
                         </div>
                     </div>
-                    <input type="password" name="password" value="" class="input-text" autocomplete="off">
+                    <input v-model="formData.password" type="password" name="password" id="password" class="input-text" autocomplete="off">
                 </div>
-                <!-- <div class="form-row mb-20">
-                    <div class="uk-flex uk-flex-middle">
-                        <input type="checkbox" name="remember" class="input-checkbox" id="forgot-password">
-                        <label for="forgot-password">Ghi nhớ mật khẩu?</label>
-                    </div>
-                </div> -->
                 <div class="form-row mb-20">
-                    <button class="uk-button btn-login">Đăng nhập</button>
+                    <button type="submit" class="uk-button btn-login">Đăng nhập</button>
                 </div>
-            </div>
+            </form>
             <div class="panel-root">
                 Or Log in using
             </div>
@@ -131,3 +125,55 @@
     }
 
 </style>
+
+<script>
+import AuthorizationServiceAdmin from "../../../../services/admin/authorization.service";
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+export default {
+  data() {
+    return {
+      formData: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    async login() {
+      try {
+        const response = await AuthorizationServiceAdmin.submitLogin(
+          this.formData
+        );
+        switch (response.data) {
+          case "wrong info":
+            // Đăng nhập không thành công
+            toast.error(
+              "Đăng nhập không thành công. Vui lòng kiểm tra thông tin đăng nhập và thử lại.",
+              {
+                autoClose: 800,
+              }
+            );
+            break;
+          case "success":
+            // Đăng nhập thành công
+            toast.success("Đăng nhập thành công", {
+              autoClose: 800,
+            });
+            setTimeout(() => {
+              this.$router.push({ name: "seafood" });
+            }, 1500);
+            break;
+          default:
+            break;
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Username or password is incorrect", {
+          autoClose: 800,
+        });
+      }
+    },
+  },
+};
+</script>
