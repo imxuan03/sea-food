@@ -161,7 +161,7 @@ export default {
               autoClose: 800,
             });
             setTimeout(() => {
-              this.$router.push({ name: "seafood" });
+              this.$router.push({ name: "dashboard" });
             }, 1500);
             break;
           default:
