@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
     <div class="login-container">
         <div class="login-wrapper">
@@ -35,7 +31,7 @@
               <span>
                 Don't have an account? 
               </span>
-              <a href="#" class="social">Register</a>
+              <router-link :to="{ name: 'register' }">Đăng ký</router-link>
             </div>
             <div class="panel-root">
                 Or Log in using
@@ -51,10 +47,11 @@
 
 <style scoped>  
     .login-container{
-        padding-top: 100px;
+        padding-top: 80px;
     }
 
     .login-wrapper{
+        position: relative;
         width: 410px;
         margin:0 auto;
         border-radius: 10px;

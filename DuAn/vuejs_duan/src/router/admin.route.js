@@ -19,11 +19,23 @@ const adminRoutes = [
     component: () => import('@/views/admin/pages/login/Login.vue'),
   },
   {
+    path: '/admin/auth/register',
+    name: 'register',
+    component: () => import('@/views/admin/pages/register/Register.vue'),
+  },
+  {
     path: '/admin/dashboard',
     name: 'dashboard',
     component: () => import('@/views/admin/pages/sea_foods/Dashboard.vue'),
     beforeEnter: requireAdminAuth
-  }
+  },
+  {
+    path: "/admin/xao",
+    name: "xao",
+    component: () => import('@/views/admin/pages/sea_foods/Xao.vue'),
+    beforeEnter: requireAdminAuth
+  },
+
 ];
 
 export default adminRoutes;

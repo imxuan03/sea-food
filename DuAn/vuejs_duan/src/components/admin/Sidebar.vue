@@ -14,22 +14,20 @@
                 <span class="task-name">Main</span>
             </li>
             <li>
-                <router-link :to="{ name: 'dashboard' }" class="nav-link" :class="{ active: $route.name === 'book' }">
-                    <a href="" class="active">
-                        <div class="uk-flex uk-flex-middle">
-                            <span class="task-icon">
-                                <i class="bx bx-home"></i>
-                            </span>
-                            <span class="nav-label">Dashboard</span>
-                            <span class="task-icon arrow">
-                                <i class="bx bx-chevron-right"></i>
-                            </span>
-                        </div>
-                    </a>
+                <router-link :to="{ name: 'dashboard' }" class="nav-link" :class="{ active: $route.name === 'dashboard' }">
+                    <div class="uk-flex uk-flex-middle">
+                        <span class="task-icon">
+                            <i class="bx bx-home"></i>
+                        </span>
+                        <span class="nav-label">Dashboard</span>
+                        <span class="task-icon arrow">
+                            <i class="bx bx-chevron-right"></i>
+                        </span>
+                    </div>
                 </router-link>
             </li>
             <li>
-                <a href="">
+                <router-link :to="{ name: 'xao' }" class="nav-link" :class="{ active: $route.name === 'xao' }">
                     <div class="uk-flex uk-flex-middle">
                         <span class="task-icon">
                             <i class="bx bx-cart"></i>
@@ -39,20 +37,7 @@
                             <i class="bx bx-chevron-right"></i>
                         </span>
                     </div>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <div class="uk-flex uk-flex-middle">
-                        <span class="task-icon">
-                            <i class="bx bx-file"></i>
-                        </span>
-                        <span class="nav-label">QL Số Lượng</span>
-                        <span class="task-icon arrow">
-                            <i class="bx bx-chevron-right"></i>
-                        </span>
-                    </div>
-                </a>
+                </router-link>
             </li>
         </ul>
        </div>

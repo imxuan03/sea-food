@@ -15,6 +15,14 @@ class AuthorizationServiceAdmin {
     }
   };
 
+  async submitRegister(credentials) {
+    try {
+      const response = await this.api.post('/register', credentials);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   async logOut(data) {
     return (await this.api.get("/logout", data)).data;
