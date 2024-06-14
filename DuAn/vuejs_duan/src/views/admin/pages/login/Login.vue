@@ -32,6 +32,12 @@
                 </div>
             </form>
             <div class="panel-root">
+              <span>
+                Don't have an account? 
+              </span>
+              <a href="#" class="social">Register</a>
+            </div>
+            <div class="panel-root">
                 Or Log in using
             </div>
             <div class="social-container">
