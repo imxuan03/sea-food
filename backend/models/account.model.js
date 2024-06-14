@@ -1,9 +1,8 @@
 const mongoose = require('mongoose')
-const slug = require('mongoose-slug-updater');
-mongoose.plugin(slug);
 
-const employeeSchema = new mongoose.Schema({
+const accountSchema = new mongoose.Schema({
     fullName:String, 
+    username: String, 
     email: String, 
     password: String,
     token: String,  
@@ -18,6 +17,6 @@ const employeeSchema = new mongoose.Schema({
     { timestamps: true }
 )
 
-const Employee = mongoose.model("Employee", employeeSchema, "employees");
+const Account = mongoose.model("Account", accountSchema, "accounts");
 
-module.exports = Employee;
+module.exports = Account;
