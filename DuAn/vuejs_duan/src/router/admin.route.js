@@ -35,6 +35,12 @@ const adminRoutes = [
     component: () => import('@/views/admin/pages/sea_foods/Xao.vue'),
     beforeEnter: requireAdminAuth
   },
+  {
+    path: "/admin/xaoadd",
+    name: "xao_add",
+    component: () => import('@/views/admin/pages/sea_foods/XaoAdd.vue'),
+    beforeEnter: requireAdminAuth
+  },
 
 ];
 
