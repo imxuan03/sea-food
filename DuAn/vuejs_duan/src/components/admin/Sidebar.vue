@@ -35,20 +35,6 @@
                     </div>
                 </router-link>
             </li>
-
-            <li>
-                <a href="">
-                    <div class="uk-flex uk-flex-middle">
-                        <span class="task-icon">
-                            <i class="bx bx-cart"></i>
-                        </span>
-                        <span class="nav-label">QL Sea Food</span>
-                        <span class="task-icon arrow">
-                            <i class="bx bx-chevron-right"></i>
-                        </span>
-                    </div>
-                </a>
-            </li>
         </ul>
        </div>
     </aside>  
