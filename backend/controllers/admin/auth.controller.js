@@ -46,6 +46,13 @@ module.exports.logout = async (req, res) => {
 // [POST] /admin/auth/register
 module.exports.register = async (req, res, next) => {
   try {
+      const { username, email } = req.body;
+      const existingUser = await Account.findOne({ $or: [{ username }, { email }] });
+
+      if (existingUser) {
+        return res.status(400).json({ message: 'user exists' });
+      }
+
       req.body.token = generateString.generateRandomString(20);
       const user = await Account.create(req.body);
       res.status(200).json({ message: 'register account successfully', user});
