@@ -41,14 +41,6 @@
                                 QL Danh Sách Xào
                             </router-link>
                         </li>
-                        <li>
-                            <router-link 
-                                :to="{ name: 'xao_add' }" 
-                                class="nav-link" 
-                                :class="{ active: showSubMenu && $route.name === 'xao_add' }">
-                                Thêm xào
-                            </router-link>
-                        </li>
                     </ul>
                 </li>
             </ul>
@@ -66,7 +58,7 @@ export default {
     watch: {
         $route(to, from) {
             // Ensure submenu is visible if navigating to a child route
-            if (to.name === 'xao' || to.name === 'xao_add') {
+            if (to.name === 'xao') {
                 this.showSubMenu = true;
             } else {
                 this.showSubMenu = false;
@@ -80,7 +72,7 @@ export default {
     },
     mounted() {
         // Set the initial state based on the current route
-        if (this.$route.name === 'xao' || this.$route.name === 'xao_add') {
+        if (this.$route.name === 'xao') {
             this.showSubMenu = true;
         }
     }

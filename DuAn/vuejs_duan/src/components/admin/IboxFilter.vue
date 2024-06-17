@@ -21,7 +21,6 @@
                             <input type="text" name="" class="form-control input-text" placeholder="Nhập từ khóa cần tìm kiếm...">
                             <button class="btn btn-primary"><i class="bx bx-search"></i></button>
                         </div>
-                        <router-link :to=filter.createLink class="ml10 btn btn-danger button"><i class="bx bx-plus">{{filter.createText}}</i></router-link>
                     </div>
                 </div>
             </div>
