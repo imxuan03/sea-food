@@ -57,37 +57,4 @@ const table = ref({
   </Layout>
 </template>
 
-<script>
-// export default {
-//   data() {
-//     return {
-//       recordsPerPage: 20,
-//       searchKeyword: '',
-//       groups: [
-//         { id: 1, name: 'U9', description: 'U9 là một loại xào có con vừa và nhỏ', status: true },
-//         { id: 2, name: 'Xào U9',  description: 'Xào U9 là một loại xào có con lớn size tù 12->20', status: true }
-//       ]
-//     };
-//   },
-//   computed: {
-//     filteredGroups() {
-//       return this.groups.filter(group =>
-//         group.name.includes(this.searchKeyword) || group.description.includes(this.searchKeyword)
-//       );
-//     }
-//   },
-//   methods: {
-//     addGroup() {
-//       alert('Thêm mới nhóm thành viên');
-//     },
-//     editGroup(group) {
-//       alert(`Edit ${group.name}`);
-//     },
-//     deleteGroup(group) {
-//       this.groups = this.groups.filter(g => g.id !== group.id);
-//     }
-//   }
-// };
-</script>
-
 <style></style>
