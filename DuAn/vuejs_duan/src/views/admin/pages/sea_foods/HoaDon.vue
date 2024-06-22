@@ -31,9 +31,9 @@ const table = ref({
     }
   ],
   route: {
-    update: 'xao/update',
-    delete: 'xao/delete',
-    detail: 'xao/detail'
+    update: 'hoadon/update',
+    delete: 'hoadon/delete',
+    detail: 'hoadon/detail'
   },
   action: [
     // {
