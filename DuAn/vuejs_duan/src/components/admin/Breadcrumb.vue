@@ -6,10 +6,10 @@
 <template>
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="page-breadcrumb">
-            <h2>{{pageTitle}}</h2>
+            <h2>{{pageTitle.createText}}</h2>
             <ul class="breadcrumb uk-flex uk-flex-middle uk-clearfix">
-                <li><router-link to="/dashboard">QL Danh Mục Xào</router-link></li>
-                <li class="active"><strong>{{pageTitle}}</strong></li>
+                <li><router-link to="/dashboard">{{pageTitle.createTitle}}</router-link></li>
+                <li class="active"><strong>{{pageTitle.createText}}</strong></li>
             </ul>
         </div>
     </div>

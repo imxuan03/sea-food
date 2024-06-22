@@ -35,6 +35,18 @@ const adminRoutes = [
     component: () => import('@/views/admin/pages/sea_foods/Xao.vue'),
     beforeEnter: requireAdminAuth
   },
+  {
+    path: "/admin/hoadon",
+    name: "hoadon",
+    component: () => import('@/views/admin/pages/sea_foods/HoaDon.vue'),
+    beforeEnter: requireAdminAuth
+  },
+  {
+    path: "/admin/hoadon/add",
+    name: "hoadon.add",
+    component: () => import('@/views/admin/pages/sea_foods/HoaDonAdd.vue'),
+    beforeEnter: requireAdminAuth
+  },
 ];
 
 export default adminRoutes;

@@ -20,29 +20,65 @@
                         </div>
                     </router-link>
                 </li>
+
                 <li>
-                    <a class="nav-link" @click="toggleSubMenu">
+                    <a class="nav-link" @click="toggleSubMenu('xao')">
                         <div class="uk-flex uk-flex-middle">
                             <span class="task-icon">
                                 <i class="bx bx-cart"></i>
                             </span>
                             <span class="nav-label">QL Danh Mục Xào</span>
                             <span class="task-icon arrow">
-                                <i class="bx" :class="showSubMenu ? 'bx-chevron-down' : 'bx-chevron-right'"></i>
+                                <i class="bx" :class="showSubMenuXao ? 'bx-chevron-down' : 'bx-chevron-right'"></i>
                             </span>
                         </div>
                     </a>
-                    <ul class="uk-list uk-clearfix sub-module" :class="{ active: showSubMenu }">
+                    <ul v-if="showSubMenuXao" class="uk-list uk-clearfix sub-module" :class="{ active: showSubMenuXao }">
                         <li>
                             <router-link 
                                 :to="{ name: 'xao' }" 
                                 class="nav-link" 
-                                :class="{ active: showSubMenu && $route.name === 'xao' }">
+                                :class="{ active: showSubMenuXao && $route.name === 'xao' }">
                                 QL Danh Sách Xào
                             </router-link>
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                    <a class="nav-link" @click="toggleSubMenu('hoadon')">
+                        <div class="uk-flex uk-flex-middle">
+                            <span class="task-icon">
+                                <i class="bx bx-cart"></i>
+                            </span>
+                            <span class="nav-label">QL Hóa Đơn</span>
+                            <span class="task-icon arrow">
+                                <i class="bx" :class="showSubMenuHoaDon ? 'bx-chevron-down' : 'bx-chevron-right'"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <ul v-if="showSubMenuHoaDon" class="uk-list uk-clearfix sub-module" :class="{ active: showSubMenuHoaDon }">
+                        <li>
+                            <router-link 
+                                :to="{ name: 'hoadon' }" 
+                                class="nav-link" 
+                                :class="{ active: showSubMenuHoaDon && $route.name === 'hoadon' }">
+                                QL Danh Sách Hóa Đơn
+                            </router-link>
+                        </li>
+                    </ul>
+                    <ul v-if="showSubMenuHoaDonAdd" class="uk-list uk-clearfix sub-module" :class="{ active: showSubMenuHoaDon }">
+                        <li>
+                            <router-link 
+                                :to="{ name: 'hoadon.add' }" 
+                                class="nav-link" 
+                                :class="{ active: showSubMenuHoaDonAdd && $route.name === 'hoadon.add' }">
+                                Thêm hóa đơn
+                            </router-link>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
     </aside>
@@ -52,28 +88,47 @@
 export default {
     data() {
         return {
-            showSubMenu: false
+            showSubMenuXao: false,
+            showSubMenuHoaDon: false,
+            showSubMenuHoaDonAdd: false
         }
     },
     watch: {
         $route(to, from) {
             // Ensure submenu is visible if navigating to a child route
             if (to.name === 'xao') {
-                this.showSubMenu = true;
+                this.showSubMenuXao = true;
+                this.showSubMenuHoaDon = false;
+                this.showSubMenuHoaDonAdd = false;
+            } else if (to.name === 'hoadon') {
+                this.showSubMenuHoaDon = true;
+                this.showSubMenuHoaDonAdd = true;
+                this.showSubMenuXao = false;
             } else {
-                this.showSubMenu = false;
+                this.showSubMenuXao = false;
+                this.showSubMenuHoaDon = false;
             }
         }
     },
     methods: {
-        toggleSubMenu() {
-            this.showSubMenu = !this.showSubMenu;
+        toggleSubMenu(menu) {
+            if (menu === 'xao') {
+                this.showSubMenuXao = !this.showSubMenuXao;
+                this.showSubMenuHoaDon = false;
+            } else if (menu === 'hoadon') {
+                this.showSubMenuHoaDon = !this.showSubMenuHoaDon;
+                this.showSubMenuHoaDonAdd = !this.showSubMenuHoaDonAdd;
+                this.showSubMenuXao = false;
+            }
         }
     },
     mounted() {
         // Set the initial state based on the current route
         if (this.$route.name === 'xao') {
-            this.showSubMenu = true;
+            this.showSubMenuXao = true;
+        } else if (this.$route.name === 'hoadon' || this.$route.name === 'hoadon.add') {
+            this.showSubMenuHoaDon = true;
+            this.showSubMenuHoaDonAdd = true;
         }
     }
 }
@@ -120,7 +175,7 @@ export default {
 }
 
 .app-sidebar .task-list li > * {
-    padding: 10px 12px;
+    padding: 8px 10px; /* Reduced padding */
     position: relative;
     text-decoration: none;
     font-size: 14px;
@@ -129,6 +184,10 @@ export default {
     color: #a3aed1;
     padding-left: 30px;
     font-weight: 500;
+}
+
+.app-sidebar .task-list > li {
+    margin-bottom: 5px; /* Reduced margin */
 }
 
 .app-sidebar .task-list > li:hover > a,
@@ -145,7 +204,7 @@ export default {
 .app-sidebar .task-list li > a .task-icon {
     font-size: 18px;
     position: absolute;
-    top: 10px;
+    top: 8px; /* Adjusted for reduced padding */
     left: 5px;
 }
 
@@ -179,8 +238,8 @@ export default {
 
 .sub-module.active {
     max-height: 1000px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 8px; /* Reduced padding */
+    padding-bottom: 8px; /* Reduced padding */
 }
 
 .sub-module li {
@@ -191,7 +250,7 @@ export default {
     font-size: 13px;
     color: #a3aed1;
     position: relative;
-    padding: 8px 10px 8px 15px;
+    padding: 6px 10px 6px 15px; /* Reduced padding */
     display: block;
     transition: background 0.3s ease-in-out;
 }
