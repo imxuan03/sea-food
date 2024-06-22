@@ -1,9 +1,49 @@
 <script setup>
 import { ref } from 'vue';
-const { table } = defineProps(['table'])
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+import XaoService from "@/services/admin/xao.service";
 
-console.log(table)
+const { table } = defineProps(['table']);
+console.log(table);
 
+const formData = ref({
+    ten_xao: "",
+    mo_ta_xao: "",
+});
+
+const add = async (event) => {
+    event.preventDefault();
+    try {
+        if (!formData.value.ten_xao || !formData.value.mo_ta_xao) {
+            toast.error("Please fill in all required fields.", { autoClose: 3000 });
+            return;
+        }
+
+        const formDataToSend = new FormData();
+        formDataToSend.append("ten_xao", formData.value.ten_xao);
+        formDataToSend.append("mo_ta_xao", formData.value.mo_ta_xao);
+
+        console.log("Sending data:", {
+            ten_xao: formData.value.ten_xao,
+            mo_ta_xao: formData.value.mo_ta_xao
+        });
+
+        const response = await XaoService.create(formDataToSend);
+
+        console.log("Response:", response);
+        
+
+        toast.success("Added successfully!", { autoClose: 1200 });
+        setTimeout(() => {
+            this.$router.push({ name: "xao" });
+        }, 800);
+    } catch (error) {
+        console.log(error);
+        const errorMessage = error.response?.data?.error || "Error!";
+        toast.error(errorMessage, { autoClose: 3000 });
+    }
+};
 </script>
 
 <template>
@@ -20,15 +60,20 @@ console.log(table)
             <tr>
                 <td></td>
                 <td></td>
-                <td><input style="width: 120px" form="ADD_form" type="text" name="ten_xao" autocomplete="off" required />
+                <td>
+                    <input style="width: 120px" v-model="formData.ten_xao" type="text" name="ten_xao" autocomplete="off" required />
                 </td>
-                <td><input style="width: 120px" form="ADD_form" type="text" name="mo_ta" autocomplete="off" required />
+                <td>
+                    <input style="width: 120px" v-model="formData.mo_ta_xao" type="text" name="mo_ta_xao" autocomplete="off" required />
                 </td>
                 <td></td>
                 <td class="text-center uk-flex-center uk-flex">
-                    <form id="ADD_form" method="post" style="display: contents">
-                        <input type="text" name="type" style="display: none" value="ADD"></input> <input type="text" name="shopID" style="display: none" value="id"></input>
-                        <router-link :to=table.route.add class="btn btn-primary mr10"><i class='bx bxs-plus-square'></i></router-link>
+                    <form @submit.prevent="add" enctype="multipart/form-data" method="post" style="display: contents">
+                        <input type="text" name="type" style="display: none" value="ADD" />
+                        <input type="text" name="shopID" style="display: none" value="id" />
+                        <button type="submit" class="btn btn-primary mr10">
+                            <i class='bx bxs-plus-square'></i>
+                        </button>
                     </form>
                 </td>
             </tr>
@@ -43,19 +88,19 @@ console.log(table)
                     <td>{{ val.name }}</td>
                     <td>{{ val.description }}</td>
                     <td></td>
-                    <td>
                     <td class="text-center uk-flex-center uk-flex">
-                        <router-link :to=table.route.update class="btn btn-primary mr10"><i
-                                class="bx bx-edit"></i></router-link>
-                        <router-link :to=table.route.delete class="btn btn-danger"><i
-                                class="bx bx-trash"></i></router-link>
+                        <router-link :to="table.route.update" class="btn btn-primary mr10">
+                            <i class="bx bx-edit"></i>
+                        </router-link>
+                        <router-link :to="table.route.delete" class="btn btn-danger">
+                            <i class="bx bx-trash"></i>
+                        </router-link>
                         <template v-if="table.action.length > 0">
                             <router-link v-for="(action, actionIndex) in table.action" :key="actionIndex"
                                 :to="action.route" class="btn btn-danger" :class="action.class">
                                 <i :class="action.icon"></i>
                             </router-link>
                         </template>
-                    </td>
                     </td>
                 </tr>
             </template>

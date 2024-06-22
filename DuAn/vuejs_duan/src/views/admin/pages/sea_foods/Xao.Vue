@@ -12,16 +12,16 @@ const tableTitle = ref('Danh sách xào');
 const table = ref({
   thead: ['STT','Tên xào', 'Mô tả'],
   data: [
-    {
-      id: 1,
-      name: 'U9',
-      description: 'U9 là một loại xào có con vừa và nhỏ'
-    },
-    {
-      id: 2,
-      name: 'Xào U9',
-      description: 'U9 là một loại xào có con lớn'
-    }
+    // {
+    //   id: 1,
+    //   name: 'U9',
+    //   description: 'U9 là một loại xào có con vừa và nhỏ'
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Xào U9',
+    //   description: 'U9 là một loại xào có con lớn'
+    // }
   ],
   route: {
     update: 'xao/update',
