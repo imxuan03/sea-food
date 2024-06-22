@@ -4,10 +4,10 @@ import Layout from "../../../../components/admin/Layout.vue";
 import Breadcrumb from "../../../../components/admin/Breadcrumb.vue";
 const pageTitle = ref('Quản lý danh sách xào');
 const tableTitle = ref('Danh sách xào');
-const filter = ref({
-  createText: 'Thêm mới xào',
-  createLink: '/admin/xaoadd'
-});
+// const filter = ref({
+//   createText: 'Thêm mới xào',
+//   createLink: '/admin/xaoadd'
+// });
 
 const table = ref({
   thead: ['STT','Tên xào', 'Mô tả'],
@@ -24,8 +24,8 @@ const table = ref({
     }
   ],
   route: {
-    update: 'xaoupdate',
-    delete: 'xaodelete'
+    update: 'xao/update',
+    delete: 'xao/delete'
   },
   action: [
     // {

@@ -28,7 +28,7 @@ console.log(table)
                 <td class="text-center uk-flex-center uk-flex">
                     <form id="ADD_form" method="post" style="display: contents">
                         <input type="text" name="type" style="display: none" value="ADD"></input> <input type="text" name="shopID" style="display: none" value="id"></input>
-                        <router-link class="btn btn-primary mr10"><i class='bx bxs-plus-square'></i></router-link>
+                        <router-link :to=table.route.add class="btn btn-primary mr10"><i class='bx bxs-plus-square'></i></router-link>
                     </form>
                 </td>
             </tr>
