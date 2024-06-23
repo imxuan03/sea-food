@@ -1,7 +1,7 @@
 import createApiAdmin from "./api.service";
 
 class HoaDonService {
-    constructor(baseUrl = "/api/admin/xao") {
+    constructor(baseUrl = "/api/admin/hoadon") {
         this.api = createApiAdmin(baseUrl);
     }
     async getAll() {
