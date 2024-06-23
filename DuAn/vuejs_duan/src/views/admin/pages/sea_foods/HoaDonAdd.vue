@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="panel-body mb10">
-                                <VariantItem v-for="(value, key) in variantItemIntances" :key="key" :index="key" @remove="removeVariantItem(key)" />
+                                <VariantItem v-for="(item, index) in variantItemIntances" :key="index" :index="index" :item="item" @remove="removeVariantItem" />
                             </div>
                             <div class="panel-foot">
                                 <button type="button" class="add-attribute-catalogue mr10" @click="addAttributeCatalogueRow">Thêm phiên bản mới</button>
